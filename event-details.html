@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dance Canada Dance – Season 1 | O'Podu Entertainments Inc.</title>
+    <style>
+        /* CSS Variables & Dark Theme */
+        :root {
+            --bg-dark: #0a0c10;
+            --bg-card: #141923;
+            --primary-gold: #ffb703;
+            --primary-crimson: #e63946;
+            --text-light: #f8f9fa;
+            --text-muted: #94a3b8;
+            --border-color: rgba(255, 255, 255, 0.1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-dark);
+            color: var(--text-light);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        /* Fixed Navigation Header */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 12, 16, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            z-index: 1000;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.6rem 2rem;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-img {
+            height: 48px;
+            width: auto;
+            object-fit: contain;
+            display: block;
+        }
+
+        .logo-text {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .logo-main {
+            font-size: 1.5rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+            line-height: 1;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .logo-sub {
+            font-size: 0.75rem;
+            font-weight: 700;
+            color: var(--primary-crimson);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.2s;
+        }
+
+        .nav-links a:hover { color: var(--primary-gold); }
+
+        /* Content Container */
+        main {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem 4rem;
+        }
+
+        /* Hero Banner with Stage Background */
+        .event-hero {
+            position: relative;
+            margin-top: 4.5rem;
+            padding: 7rem 2rem 5rem;
+            text-align: center;
+            border-radius: 0 0 24px 24px;
+            overflow: hidden;
+            background: linear-gradient(180deg, rgba(10, 12, 16, 0.7) 0%, rgba(10, 12, 16, 0.95) 100%),
+                        url('https://encrypted-tbn0.gstatic.com/licensed-image?q=tbn:ANd9GcRluoQDYJRISsF3yxXJQ1mwe9fEDtwE53l2mUvsveCBFJuPA5mGpG0NzzdQUj89o1PIVZVDv9a4fgEWTws') center/cover no-repeat;
+            box-shadow: inset 0 0 120px rgba(0,0,0,0.85);
+        }
+
+        .badge {
+            display: inline-block;
+            background: var(--primary-crimson);
+            color: #fff;
+            padding: 0.35rem 1rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 1rem;
+        }
+
+        .event-hero h1 {
+            font-size: 3.5rem;
+            line-height: 1.15;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, #fff, var(--primary-gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .event-hero p.tagline {
+            font-size: 1.3rem;
+            color: var(--primary-gold);
+            font-weight: 600;
+            max-width: 800px;
+            margin: 0 auto 2rem auto;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.9);
+        }
+
+        /* Countdown Timer Styling */
+        .countdown-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1.2rem;
+            margin: 2rem 0;
+            flex-wrap: wrap;
+        }
+
+        .countdown-box {
+            background: rgba(20, 25, 35, 0.85);
+            border: 1px solid var(--primary-gold);
+            padding: 1rem 1.2rem;
+            border-radius: 12px;
+            min-width: 90px;
+            text-align: center;
+            backdrop-filter: blur(8px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+        }
+
+        .countdown-box .num {
+            display: block;
+            font-size: 2.2rem;
+            font-weight: 800;
+            color: var(--primary-gold);
+            line-height: 1;
+        }
+
+        .countdown-box .label {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            color: var(--text-muted);
+            letter-spacing: 1px;
+            margin-top: 0.3rem;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.85rem 2rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            cursor: pointer;
+            border: none;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--primary-gold), #fb8500);
+            color: #000;
+            box-shadow: 0 4px 15px rgba(255, 183, 3, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(255, 183, 3, 0.5);
+        }
+
+        .btn-secondary {
+            background: rgba(10, 12, 16, 0.6);
+            color: var(--text-light);
+            border: 2px solid var(--primary-gold);
+            backdrop-filter: blur(5px);
+        }
+
+        .btn-secondary:hover {
+            background: var(--primary-gold);
+            color: #000;
+        }
+
+        /* Universal Section Layouts */
+        section { padding-top: 5rem; }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            max-width: 750px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Event Quick Details Bar */
+        .details-bar {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 1.5rem;
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            padding: 2rem;
+            margin-top: 3rem;
+            text-align: center;
+        }
+
+        .detail-item h4 {
+            color: var(--primary-gold);
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 0.3rem;
+        }
+
+        .detail-item p {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: var(--text-light);
+        }
+
+        /* Feature Cards Grid */
+        .grid-2x2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        .feature-card {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2.2rem;
+            transition: transform 0.3s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-gold);
+        }
+
+        .feature-card h3 {
+            color: var(--primary-gold);
+            margin-bottom: 0.8rem;
+            font-size: 1.3rem;
+        }
+
+        .feature-card p {
+            color: var(--text-muted);
+            font-size: 0.98rem;
+            line-height: 1.7;
+        }
+
+        /* Registration CTA Block */
+        .registration-box {
+            background: linear-gradient(135deg, #1f1a3a 0%, var(--bg-card) 100%);
+            border: 2px solid var(--primary-gold);
+            border-radius: 20px;
+            padding: 3.5rem 2rem;
+            text-align: center;
+            margin-top: 3rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .registration-box h2 {
+            font-size: 2.4rem;
+            margin-bottom: 1rem;
+        }
+
+        .registration-box p {
+            color: var(--text-muted);
+            max-width: 700px;
+            margin: 0 auto 2rem auto;
+            font-size: 1.1rem;
+        }
+
+        /* Sponsor Section Grid */
+        .sponsor-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin-bottom: 2rem;
+        }
+
+        .sponsor-tier {
+            background: var(--bg-card);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 2rem;
+            text-align: center;
+        }
+
+        .sponsor-tier h4 {
+            color: var(--primary-gold);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .sponsor-tier p {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid var(--border-color);
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .event-hero h1 { font-size: 2.4rem; }
+            .nav-container { flex-direction: column; gap: 1rem; }
+            .details-bar { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header Navigation -->
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo-container">
+                <!-- Replace logo.png with your actual logo image path -->
+                <img src="image/oPoduLogo.jpeg" alt="O'Podu Entertainments Inc. Logo" class="logo-img">
+                <div class="logo-text">
+                    <span class="logo-main">O'Podu</span>
+                    <span class="logo-sub">Entertainments Inc.</span>
+                </div>
+            </a>
+            <ul class="nav-links">
+                <li><a href="index.html#about">About Us</a></li>
+                <li><a href="index.html#events">All Events</a></li>
+                <li><a href="#register">Register Now</a></li>
+                <li><a href="#sponsors">Sponsors</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <!-- Event Hero Section -->
+    <div class="event-hero">
+        <span class="badge">Current Marquee Production</span>
+        <h1>Dance Canada Dance – Season 1</h1>
+        <p class="tagline">Bring Your Talent. We Provide The World Stage.</p>
+
+        <!-- Dynamic Countdown Timer -->
+        <div class="countdown-grid" id="countdown">
+            <div class="countdown-box"><span class="num" id="days">00</span><span class="label">Days</span></div>
+            <div class="countdown-box"><span class="num" id="hours">00</span><span class="label">Hours</span></div>
+            <div class="countdown-box"><span class="num" id="minutes">00</span><span class="label">Minutes</span></div>
+            <div class="countdown-box"><span class="num" id="seconds">00</span><span class="label">Seconds</span></div>
+        </div>
+
+        <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+            <!-- REPLACE YOUR_GOOGLE_FORM_URL_HERE WITH YOUR ACTUAL GOOGLE FORM LINK -->
+            <a href="YOUR_GOOGLE_FORM_URL_HERE" target="_blank" class="btn btn-primary">Register To Perform</a>
+            <a href="#sponsors" class="btn btn-secondary">Become A Partner</a>
+        </div>
+    </div>
+
+    <main>
+        <!-- Quick Details Bar -->
+        <div class="details-bar">
+            <div class="detail-item">
+                <h4>Date & Time</h4>
+                <p>November 14, 2026</p>
+            </div>
+            <div class="detail-item">
+                <h4>Venue</h4>
+                <p>Century Gardens Recreation Centre</p>
+            </div>
+            <div class="detail-item">
+                <h4>Location</h4>
+                <p>Brampton, Ontario (GTA)</p>
+            </div>
+            <div class="detail-item">
+                <h4>Broadcast</h4>
+                <p>Global Digital Livestream</p>
+            </div>
+        </div>
+
+        <!-- About The Event -->
+        <section id="about-event">
+            <h2 class="section-title">The Stage Is Yours</h2>
+            <p class="section-subtitle">Dance Canada Dance Season 1 brings together the finest dancers, choreographers, and academies across the Greater Toronto Area (GTA) onto one electrifying platform.</p>
+            
+            <div style="background: var(--bg-card); border: 1px solid var(--border-color); border-radius: 16px; padding: 2.5rem; text-align: center; margin-bottom: 3rem;">
+                <p style="font-size: 1.15rem; color: var(--text-light); max-width: 900px; margin: 0 auto; line-height: 1.8;">
+                    At <strong>O'Podu Entertainments Inc.</strong>, we strongly believe that every dancer deserves standard stage lighting, an enthusiastic audience, and maximum visibility. Whether you represent an established dance academy or are performing as an independent artist, we bridge your passion from concept to live performance, telecasting your talent worldwide through high-definition digital streams.
+                </p>
+            </div>
+        </section>
+
+        <!-- What You Will Get -->
+        <section id="benefits">
+            <h2 class="section-title">What Performers Receive</h2>
+            <p class="section-subtitle">More than a competition—a complete launchpad for your artistic journey.</p>
+
+            <div class="grid-2x2">
+                <div class="feature-card">
+                    <h3>Cash Prizes & Trophies</h3>
+                    <p>Compete for prestigious trophies, official title recognition, and exciting cash prizes awarded across multiple competition categories.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Unmatched Visibility</h3>
+                    <p>Perform on a state-of-the-art stage designed for maximum impact. Build massive brand exposure for yourself or your represented dance academy.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Global Audience Reach</h3>
+                    <p>Reach family, friends, and talent scouts worldwide through our full digital and social media livestream coverage of the entire showcase.</p>
+                </div>
+                <div class="feature-card">
+                    <h3>Concept-To-Live Execution</h3>
+                    <p>Receive end-to-end production support—from stage setup and professional audio engineering to high-definition video highlight reels.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Registration Link Section -->
+        <section id="register">
+            <div class="registration-box">
+                <h2>Ready To Claim Your Spotlight?</h2>
+                <p>Registration is officially open for solo performers, duos, and group troupes across all dance styles (Bollywood, Classical, Fusion, Folk & Contemporary).</p>
+                
+                <!-- Replace 'YOUR_GOOGLE_FORM_URL_HERE' with your Google Form URL -->
+                <a href="YOUR_GOOGLE_FORM_URL_HERE" target="_blank" class="btn btn-primary" style="font-size: 1.1rem; padding: 1rem 2.5rem;">
+                    Click Here To Fill Registration Form
+                </a>
+                
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 1.5rem;">
+                    *Link opens in a new tab. Registration deadline and performance slot rules apply.
+                </p>
+            </div>
+        </section>
+
+        <!-- Sponsor & Corporate Partners Section -->
+        <section id="sponsors">
+            <h2 class="section-title">Partner & Sponsor With Us</h2>
+            <p class="section-subtitle">Connect your business with thousands of vibrant cultural enthusiasts across North America and worldwide live viewers.</p>
+
+            <div class="sponsor-grid">
+                <div class="sponsor-tier">
+                    <h4>Title Sponsor</h4>
+                    <p>Prime banner placement, live stage announcements, and global stream coverage integration.</p>
+                </div>
+                <div class="sponsor-tier">
+                    <h4>Category Sponsor</h4>
+                    <p>Sponsor specific award categories, trophy presentations, and competitor backdrops.</p>
+                </div>
+                <div class="sponsor-tier">
+                    <h4>Booth / Stall Vendor</h4>
+                    <p>Set up interactive promotional booths inside Century Gardens Recreation Centre during the event.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin-top: 2rem;">
+                <p style="color: var(--text-light); margin-bottom: 1rem;">Interested in customized sponsorship packages?</p>
+                <a href="mailto:contact@opoduentertainments.com?subject=Dance%20Canada%20Dance%20Sponsorship" class="btn btn-secondary">Contact Sponsorship Team</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        &copy; 2026 O'Podu Entertainments Inc. All rights reserved. | Dance Canada Dance – Season 1
+    </footer>
+
+    <!-- Interactive JavaScript for Countdown Timer -->
+    <script>
+        // Set event date: November 14, 2026 @ 4:00 PM EST
+        const targetEventDate = new Date("November 14, 2026 16:00:00").getTime();
+
+        function updateCountdown() {
+            const now = new Date().getTime();
+            const timeRemaining = targetEventDate - now;
+
+            if (timeRemaining <= 0) {
+                document.getElementById("countdown").innerHTML = 
+                    "<h3 style='color: var(--primary-gold); font-size: 1.6rem;'>THE SHOW IS LIVE TODAY!</h3>";
+                return;
+            }
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById("days").innerText = days < 10 ? "0" + days : days;
+            document.getElementById("hours").innerText = hours < 10 ? "0" + hours : hours;
+            document.getElementById("minutes").innerText = minutes < 10 ? "0" + minutes : minutes;
+            document.getElementById("seconds").innerText = seconds < 10 ? "0" + seconds : seconds;
+        }
+
+        // Run calculation immediately on page load
+        updateCountdown();
+
+        // Update the countdown timer every 1 second
+        setInterval(updateCountdown, 1000);
+    </script>
+
+</body>
+</html>
